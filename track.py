@@ -179,5 +179,25 @@ x,v = numpy.linalg.eig(A)
 tot = 0
 for i in range(len(v[:,0])):
 	tot += numpy.real(v[:,0][i])
+	
+x = []
+for i in range(len(names)):
+	if i != 1:
+		x.append(0)
+	else:
+		x.append(1)
+x = numpy.array(x).transpose()
+
+for k in range(1001):
+	print "Iteration " + str(k) + ":"
+	print "------------"
+	for i in range(len(v[:,0])):
+		print names[i] + " " + str(x[i])	
+	print "------------"
+	x = A.dot(x)
+
+print "EIGENVECTOR:"
+print "------------"
 for i in range(len(v[:,0])):
-	print names[i] + " " + str(numpy.real(v[:,0][i]/float(tot)))
+	print names[i] + " " + str(float(numpy.real(v[:,0][i]/float(tot))))
+print "------------"
