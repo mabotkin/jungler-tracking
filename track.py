@@ -162,11 +162,11 @@ graph[21][8] = 0.05 #base to dragon
 A = numpy.array(graph)
 A = A.transpose()
 
-for i in range(len(A)):
-	tot = 0
-	for j in range(len(A[0])):
-		tot += A[j][i]
-	print i, tot
+#for i in range(len(A)):
+#	tot = 0
+#	for j in range(len(A[0])):
+#		tot += A[j][i]
+#	print i, tot
 
 #print A
 #print numpy.linalg.eigvals(A)
@@ -175,6 +175,9 @@ x,v = numpy.linalg.eig(A)
 #x = (numpy.linalg.eig(A)[0][1:])
 #print x
 #print v
-print x[0]
+#print x[0]
+tot = 0
 for i in range(len(v[:,0])):
-	print names[i] + " " + str(v[:,0][i])
+	tot += numpy.real(v[:,0][i])
+for i in range(len(v[:,0])):
+	print names[i] + " " + str(numpy.real(v[:,0][i]/float(tot)))
