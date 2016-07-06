@@ -159,18 +159,22 @@ graph[21][11] = 0.1 #base to gromp
 graph[21][7] = 0.05 #base to baron
 graph[21][8] = 0.05 #base to dragon
 
-#for i in range(len(graph)):
-#	tot = 0
-#	for j in range(len(graph[0])):
-#		tot += graph[i][j]
-#	print i, tot
-
 A = numpy.array(graph)
+A = A.transpose()
+
+for i in range(len(A)):
+	tot = 0
+	for j in range(len(A[0])):
+		tot += A[j][i]
+	print i, tot
 
 #print A
 #print numpy.linalg.eigvals(A)
 x,v = numpy.linalg.eig(A)
-print v
+#print v
 #x = (numpy.linalg.eig(A)[0][1:])
-#for i in range(len(x)):
-#	print names[i] + " " + str(x[i])
+#print x
+#print v
+print x[0]
+for i in range(len(v[:,0])):
+	print names[i] + " " + str(v[:,0][i])
