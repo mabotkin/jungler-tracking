@@ -1,4 +1,5 @@
 import numpy.linalg
+from time import time
 
 MINR = 0
 MING = 0
@@ -7,6 +8,7 @@ MAXR = 255
 MAXG = 0
 MAXB = 0
 
+tic = time()
 data = open("minimap.ppm","r").read().split()
 i = 4
 pixel = 0
@@ -32,18 +34,22 @@ loc = [(85,218,12),(139,235,12),(136,288,12),(254,328,12),(275,377,12),(300,426,
 
 def draw(arr, filename):
 	global image, names, loc, width, height, thing, maxval
+	tic = time()
 	tmp = [[0 for x in range(width)] for y in range(height)]
 	for i in range(height):
 		for j in range(width):
+			blah = False
 			for m in range(len(loc)):
 				k = loc[m]
-				if ((i-k[0])**2 + (j-k[1])**2) < k[2]**2:
+				if ((i-k[1])**2 + (j-k[0])**2) < k[2]**2:
 					scale = arr[m]
 					col = (MINR + scale*(MAXR-MINR), MING + scale*(MAXG-MING), MINB + scale*(MAXB-MINB))
 					lazy = image[i][j];
-					tmp[i][j] = ((lazy[0]+col[0])/2.0,(lazy[1]+col[1])/2.0,(lazy[2]+col[2])/2.0)
-				else:
-					tmp[i][j] = image[i][j]
+					tmp[i][j] = (int((lazy[0]+col[0])/2.0),int((lazy[1]+col[1])/2.0),int((lazy[2]+col[2])/2.0))
+					#tmp[i][j] = col;
+					blah = True
+			if not blah:
+				tmp[i][j] = image[i][j]
 	fout = open("images/" + filename,"w")
 	fout.write(str(thing)+"\n")
 	fout.write(str(width)+"\n")
@@ -54,6 +60,8 @@ def draw(arr, filename):
 			for k in range(3):
 				fout.write(str(tmp[i][j][k]) + "\n")
 	fout.close()
+	toc = time()
+	print "Time to Generate Image: " + str(toc-tic) + " seconds"
 
 graph = [[0 for i in range(len(names))] for i in range(len(names))]
 
@@ -255,3 +263,5 @@ for i in range(len(v[:,0])):
 	print names[i] + " " + str(float(numpy.real(v[:,0][i]/float(tot))))
 print "------------"
 draw(x,"eigenvector.ppm")
+toc = time()
+print "Total Time: " + str(toc-tic) + " seconds"
