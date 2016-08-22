@@ -1,18 +1,57 @@
 import numpy.linalg
 
-MINR = 
-MING = 
-MINB = 
-MAXR = 
-MAXG = 
-MAXB = 
+MINR = 0
+MING = 0
+MINB = 255
+MAXR = 255
+MAXG = 0
+MAXB = 0
 
+fin = open("minimap.ppm","r").read().split()
+i = 4
+pixel = 0
+thing = data[0]
+width = int(data[1])
+height = int(data[2])
+maxval = int(data[3])
+
+image = [[0 for x in range(width)] for y in range(height)]
+
+while pixel < width*height:
+	x = pixel/width
+	y = pixel%width
+	image[x][y] = (int(data[i],data[i+1],data[i+2]))
+	i+=3
+	pixel+=1
 
 #           0         1          2        3          4         5      6        7       8           9               10            11                12             13              14               15              16           17
 names = ["Gromp","Blue Buff","Wolves","Wraiths","Red Buff","Golems","Tri","Baron","Dragon","Lower Scuttle","Upper Scuttle","Enemy Gromp","Enemy Blue Buff","Enemy Wolves","Enemy Wraiths","Enemy Red Buff","Enemy Golems","Enemy Tri",       "Top","Mid","Bot","Base"]
 #     18    19    20     21
 
 loc = [(85,218,12),(139,235,12),(136,288,12),(254,328,12),(275,377,12),(300,426,12),(369,409,10),(177,150,18),(353,361,18),(371,327,10),(162,178,10),(445,289,12),(394,272,12),(391,217,12),(284,179,12),(253,130,12),(225,83,12),(159,100,10),(77,77,21),(270,250,21),(450,432,21),(485,40,25)]
+
+def draw(arr, filename):
+	global image, names, loc, width, height, thing, maxval
+	tmp = [[0 for x in range(width)] for y in range(height)]
+	for i in range(height):
+		for j in range(width):
+			for m in range(len(loc)):
+				k = loc[m]
+				if ((i-k[0])**2 + (j-k[1])**2) < k[2]**2:
+					scale = arr[m]
+					col = (MINR + scale*(MAXR-MINR), MING + scale*(MAXG-MING), MINB + scale*(MAXB-MINB))
+					lazy = image[i][j];
+					tmp[i][j] = ((lazy[0]+col[0])/2.0,(lazy[1]+col[1])/2.0,(lazy[2]+col[2])/2.0)
+	fout = open(filename,"w")
+	fout.write(str(thing)+"\n")
+	fout.write(str(width)+"\n")
+	fout.write(str(height)+"\n")
+	fout.write(str(maxval)+"\n")
+	for i in range(height):
+		for j in range(width):
+			for k in range(3):
+				fout.write(str(tmp[i][j][k]) + "\n")
+	fout.close()
 
 graph = [[0 for i in range(len(names))] for i in range(len(names))]
 
