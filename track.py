@@ -1,8 +1,19 @@
 import numpy.linalg
 
+MINR = 
+MING = 
+MINB = 
+MAXR = 
+MAXG = 
+MAXB = 
+
+
 #           0         1          2        3          4         5      6        7       8           9               10            11                12             13              14               15              16           17
 names = ["Gromp","Blue Buff","Wolves","Wraiths","Red Buff","Golems","Tri","Baron","Dragon","Lower Scuttle","Upper Scuttle","Enemy Gromp","Enemy Blue Buff","Enemy Wolves","Enemy Wraiths","Enemy Red Buff","Enemy Golems","Enemy Tri",       "Top","Mid","Bot","Base"]
 #     18    19    20     21
+
+loc = [(85,218,12),(139,235,12),(136,288,12),(254,328,12),(275,377,12),(300,426,12),(369,409,10),(177,150,18),(353,361,18),(371,327,10),(162,178,10),(445,289,12),(394,272,12),(391,217,12),(284,179,12),(253,130,12),(225,83,12),(159,100,10),(77,77,21),(270,250,21),(450,432,21),(485,40,25)]
+
 graph = [[0 for i in range(len(names))] for i in range(len(names))]
 
 graph[0][10] = 0.1 #gromp to scuttle
