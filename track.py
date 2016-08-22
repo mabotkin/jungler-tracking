@@ -7,7 +7,7 @@ MAXR = 255
 MAXG = 0
 MAXB = 0
 
-fin = open("minimap.ppm","r").read().split()
+data = open("minimap.ppm","r").read().split()
 i = 4
 pixel = 0
 thing = data[0]
@@ -20,7 +20,7 @@ image = [[0 for x in range(width)] for y in range(height)]
 while pixel < width*height:
 	x = pixel/width
 	y = pixel%width
-	image[x][y] = (int(data[i],data[i+1],data[i+2]))
+	image[x][y] = (int(data[i]),int(data[i+1]),int(data[i+2]))
 	i+=3
 	pixel+=1
 
@@ -42,7 +42,9 @@ def draw(arr, filename):
 					col = (MINR + scale*(MAXR-MINR), MING + scale*(MAXG-MING), MINB + scale*(MAXB-MINB))
 					lazy = image[i][j];
 					tmp[i][j] = ((lazy[0]+col[0])/2.0,(lazy[1]+col[1])/2.0,(lazy[2]+col[2])/2.0)
-	fout = open(filename,"w")
+				else:
+					tmp[i][j] = image[i][j]
+	fout = open("images/" + filename,"w")
 	fout.write(str(thing)+"\n")
 	fout.write(str(width)+"\n")
 	fout.write(str(height)+"\n")
@@ -243,6 +245,7 @@ for k in range(5):
 	print "------------"
 	for i in range(len(v[:,0])):
 		print names[i] + " " + str(x[i])	
+	draw(x,"minimap" + str(k) + ".ppm")
 	print "------------"
 	x = A.dot(x)
 
@@ -251,3 +254,4 @@ print "------------"
 for i in range(len(v[:,0])):
 	print names[i] + " " + str(float(numpy.real(v[:,0][i]/float(tot))))
 print "------------"
+draw(x,"eigenvector.ppm")
