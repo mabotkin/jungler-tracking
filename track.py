@@ -8,6 +8,8 @@ MAXR = 255
 MAXG = 0
 MAXB = 0
 
+PROB_MAX = 0.125
+
 tic = time()
 data = open("minimap.ppm","r").read().split()
 i = 4
@@ -42,7 +44,9 @@ def draw(arr, filename):
 			for m in range(len(loc)):
 				k = loc[m]
 				if ((i-k[1])**2 + (j-k[0])**2) < k[2]**2:
-					scale = arr[m]
+					scale = arr[m]/PROB_MAX
+					if scale > 1:
+						scale = 1
 					col = (MINR + scale*(MAXR-MINR), MING + scale*(MAXG-MING), MINB + scale*(MAXB-MINB))
 					lazy = image[i][j];
 					tmp[i][j] = (int((lazy[0]+col[0])/2.0),int((lazy[1]+col[1])/2.0),int((lazy[2]+col[2])/2.0))
