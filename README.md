@@ -2,6 +2,8 @@
 
 This is a program designed to track jungler movement in League of Legends using linear algebra techniques, specifically Markov Chains.  The program, when run, generates a series of images, designed to look like heatmaps, to show where the most probable location of the jungler could be.  Note that the transition matrix used is completely arbitrary and could (and should) be modified as the League of Legends meta shifts or other transition matricies are found to be more accurate.
 
+Pull requests are encouraged and appreciated!
+
 ## Running the Program
 To run the program, run
 
@@ -53,7 +55,7 @@ Finally, we create the position vector, denoted as x, and initialize a 1 in a ce
 </ol>
 
 ## Mathematics of Jungler Tracking
-A 21x21 stochastic matrix is constructed, representing the transition matrix (or adjacency matrix) between nodes on the map.  The matrix then acts on the position vector with probabilities of the location of the jungler to generate the next iteration of the position vector.  This process is repeated to generate future position vectors similar to a Markov Chain.  The position vector is updated with the probabilities which are then rendered as heatmaps.
+A 22x22 stochastic matrix is constructed, representing the transition matrix (or adjacency matrix) between nodes on the map.  The matrix then acts on the position vector with probabilities of the location of the jungler to generate the next iteration of the position vector.  This process is repeated to generate future position vectors similar to a Markov Chain.  The position vector is updated with the probabilities which are then rendered as heatmaps.
 
 Because the transition matrix is stochastic, we are guarenteed an eigenvalue of 1, as well as at least one eigenvector corresponding to the eigenvalue of 1, known as the Steady-State Vector.  Using numpy's linear algebra library, we are able to determine this eigenvector, which represents the probability distributions of the location of the jungler after a theoretical infinite amount of time.  The significance of this eigenvector is that given no initial conditions on the location of the jungler, the eigenvector represents the probability distribution at any given moment if no information regarding the location is known.
 
