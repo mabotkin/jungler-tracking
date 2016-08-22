@@ -188,7 +188,7 @@ for i in range(len(names)):
 		x.append(1)
 x = numpy.array(x).transpose()
 
-for k in range(1001):
+for k in range(5):
 	print "Iteration " + str(k) + ":"
 	print "------------"
 	for i in range(len(v[:,0])):
