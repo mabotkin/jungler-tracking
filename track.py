@@ -1,6 +1,8 @@
 import numpy.linalg
 from time import time
 
+ITERATIONS = 5
+
 MINR = 0
 MING = 0
 MINB = 255
@@ -9,6 +11,8 @@ MAXG = 0
 MAXB = 0
 
 PROB_MAX = 0.125
+
+BASE = "RED"
 
 tic = time()
 data = open("minimap.ppm","r").read().split()
@@ -29,10 +33,14 @@ while pixel < width*height:
 	pixel+=1
 
 #           0         1          2        3          4         5      6        7       8           9               10            11                12             13              14               15              16           17
-names = ["Gromp","Blue Buff","Wolves","Wraiths","Red Buff","Golems","Tri","Baron","Dragon","Lower Scuttle","Upper Scuttle","Enemy Gromp","Enemy Blue Buff","Enemy Wolves","Enemy Wraiths","Enemy Red Buff","Enemy Golems","Enemy Tri",       "Top","Mid","Bot","Base"]
+names = ["Blue Side Gromp","Blue Side Blue Buff","Blue Side Wolves","Blue Side Wraiths","Blue Side Red Buff","Blue Side Golems","Blue Side Tri","Baron","Dragon","Lower Scuttle","Upper Scuttle","Red Side Gromp","Red Side Blue Buff","Red Side Wolves","Red Side Wraiths","Red Side Red Buff","Red Side Golems","Red Side Tri",       "Top","Mid","Bot","Base"]
 #     18    19    20     21
 
-loc = [(85,218,12),(139,235,12),(136,288,12),(254,328,12),(275,377,12),(300,426,12),(369,409,10),(177,150,18),(353,361,18),(371,327,10),(162,178,10),(445,289,12),(394,272,12),(391,217,12),(284,179,12),(253,130,12),(225,83,12),(159,100,10),(77,77,21),(270,250,21),(450,432,21),(485,40,25)]
+loc = [(85,218,12),(139,235,12),(136,288,12),(254,328,12),(275,377,12),(300,426,12),(369,409,10),(177,150,18),(353,361,18),(371,327,10),(162,178,10),(445,289,12),(394,272,12),(391,217,12),(284,179,12),(253,130,12),(225,83,12),(159,100,10),(77,77,21),(270,250,21),(450,432,21)]
+if BASE == "BLUE":
+	loc.append((25,490,25))
+else:
+	loc.append((485,40,25))
 
 def draw(arr, filename):
 	global image, names, loc, width, height, thing, maxval
@@ -252,7 +260,7 @@ for i in range(len(names)):
 		x.append(1)
 x = numpy.array(x).transpose()
 
-for k in range(5):
+for k in range(ITERATIONS+1):
 	print "Iteration " + str(k) + ":"
 	print "------------"
 	for i in range(len(v[:,0])):
