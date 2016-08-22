@@ -27,28 +27,30 @@ The large block of code in the middle represents the transition matrix, and thes
 Finally, we create the position vector, denoted as x, and initialize a 1 in a certain location to represent knowing with certainty the location of the jungler.  This location can be changed by modifying which position of the vector has the 1 (and thus the location is known to be there).
 
 ### Location to Index Table
-0. Blue Side Gromp
-1. Blue Side Blue Buff
-2. Blue Side Wolves
-3. Blue Side Wraiths
-4. Blue Side Red Buff
-5. Blue Side Golems
-6. Blue Side Tri-Bush
-7. Baron Pit
-8. Dragon Pit
-9. Lower Scuttle Crab
-10. Upper Scuttle Crab
-11. Red Side Gromp
-12. Red Side Blue Buff
-13. Red Side Wolves
-14. Red Side Wraiths
-15. Red Side Red Buff
-16. Red Side Golems
-17. Red Side Tri-Bush
-18. Top Lane
-19. Mid Lane
-20. Bot Lane
-21. Base
+<ol start=0>
+<li>Blue Side Gromp</li>
+<li>Blue Side Blue Buff</li>
+<li>Blue Side Wolves</li>
+<li>Blue Side Wraiths</li>
+<li>Blue Side Red Buff</li>
+<li>Blue Side Golems</li>
+<li>Blue Side Tri-Bush</li>
+<li>Baron Pit</li>
+<li>Dragon Pit</li>
+<li>Lower Scuttle Crab</li>
+<li>Upper Scuttle Crab</li>
+<li>Red Side Gromp</li>
+<li>Red Side Blue Buff</li>
+<li>Red Side Wolves</li>
+<li>Red Side Wraiths</li>
+<li>Red Side Red Buff</li>
+<li>Red Side Golems</li>
+<li>Red Side Tri-Bush</li>
+<li>Top Lane</li>
+<li>Mid Lane</li>
+<li>Bot Lane</li>
+<li>Base</li>
+</ol>
 
 ## Mathematics of Jungler Tracking
 A 21x21 stochastic matrix is constructed, representing the transition matrix (or adjacency matrix) between nodes on the map.  The matrix then acts on the position vector with probabilities of the location of the jungler to generate the next iteration of the position vector.  This process is repeated to generate future position vectors similar to a Markov Chain.  The position vector is updated with the probabilities which are then rendered as heatmaps.
