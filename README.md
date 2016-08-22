@@ -64,13 +64,13 @@ The intended use of this program was to eventually create a set of images that c
 
 Heatmap of initial state - jungler position is known to be at Blue Side Blue Buff:
 ![Initial State](screenshots/minimap0.png?raw=true "Initial heatmap - jungler position known to be at Blue Side Blue Buff")
-<br />Iteration 1:
+<br />Iteration 1:<br />
 ![1st Iteration](screenshots/minimap1.png?raw=true "Heatmap after 1 iteration")
-<br />Iteration 2:
+<br />Iteration 2:<br />
 ![2nd Iteration](screenshots/minimap2.png?raw=true "Heatmap after 2 iterations")
-<br />Iteration 3:
+<br />Iteration 3:<br />
 ![3rd Iteration](screenshots/minimap3.png?raw=true "Heatmap after 3 iterations")
-<br />Iteration 4:
+<br />Iteration 4:<br />
 ![4th Iteration](screenshots/minimap4.png?raw=true "Heatmap after 4 iterations")
-<br />Eigenvector:
+<br />Eigenvector:<br />
 ![Eigenvector](screenshots/eigenvector.png?raw=true "Eigenvector Heatmap")
