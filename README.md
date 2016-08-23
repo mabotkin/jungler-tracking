@@ -61,8 +61,10 @@ Because the transition matrix is stochastic, we are guarenteed an eigenvalue of 
 
 A better model could be created using a (or multiple) partial differential equations, similar to the [Heat Equation](https://en.wikipedia.org/wiki/Heat_equation), as the movement of the jungler is not discretized as a Markov Chain model would predict but instead continuous and a better fit for PDE modeling, but this is beyond my current mathematical scope and will be revisited at a future time.
 
+<!---
 ## Intended Use
 The intended use of this program was to eventually create a set of images that could be referenced at any given time to have an idea of where the jungler could be knowing its previous location.  These images would be consulted during a game of League of Legends, resetting the position vector to a definite state when the jungler is spotted at a certain location, and allowed to iterate when the location is not known.  Further work will be done to create a tool that can efficiently track the junglers' position in real time.
+-->
 
 ## Screenshots
 
