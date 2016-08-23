@@ -1,5 +1,6 @@
 import numpy.linalg
 from time import time
+import os
 
 ITERATIONS = 5
 
@@ -62,6 +63,8 @@ def draw(arr, filename):
 					blah = True
 			if not blah:
 				tmp[i][j] = image[i][j]
+	if not os.path.exists("images/"):
+		os.makedirs("images/")
 	fout = open("images/" + filename,"w")
 	fout.write(str(thing)+"\n")
 	fout.write(str(width)+"\n")
